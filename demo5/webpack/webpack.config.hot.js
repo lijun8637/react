@@ -12,6 +12,7 @@ var webpackBase =  require('./webpack.config.base');
 module.exports = Object.assign(webpackBase,{
     devtool: 'cheap-module-eval-source-map',
     plugins: [
+    	//["import", {"libraryName": "antd-mobile", "style": true}],
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin()
     ]
