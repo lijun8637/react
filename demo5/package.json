@@ -1,5 +1,5 @@
 {
-  "name": "z-cli-react",
+  "name": "z-web-cli",
   "version": "1.0.0",
   "description": "react webpack lesson",
   "main": "index.js",
@@ -8,17 +8,10 @@
     "build": "node webpack/server.js --build",
     "online": "node webpack/server.js --online"
   },
-  "repository": {
-    "type": "github",
-    "url": "https://github.com/ZengTianShengZ/react-lesson"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ZengTianShengZ/react-lesson/issues"
-  },
-  "homepage": "https://github.com/ZengTianShengZ/react-lesson#readme",
   "dependencies": {
+    "antd-mobile": "^2.2.3",
     "babel-polyfill": "^6.23.0",
     "body-parser": "^1.17.1",
     "deep-extend": "^0.4.1",

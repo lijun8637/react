@@ -11,8 +11,5 @@ store.subscribe(() => {
 });
 
 render(
-    <Provider store={store}>
-      {router}
-    </Provider>,
-    document.getElementById('root')
+    <Provider store={store}>{router}</Provider>, document.getElementById('root')
 );

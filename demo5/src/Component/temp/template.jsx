@@ -5,8 +5,8 @@ import  * as action from '../../Redux/action.jsx'
 /*=================
  template.jsx
  所有组件的父组件
- 用来封装组件用的
- ==================*/
+ 用来封装组件用的==================*/
+ 
 const Main = mySetting => {
     // 默认 setting
     let setting = {
