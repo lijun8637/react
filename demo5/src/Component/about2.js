@@ -19,10 +19,11 @@ var h1 = React.createElement(
 var arr = [1,2,3,4,5,6,6]
 
 arr = [
-    ['ag','vhd','aghjtr'],
-    ['ag1','vhd1','aghjtr1'],
-    ['ag2','vhd2','aghjtr2']
+    'ag','vhd','aghjtr',
+    'ag1','vhd1','aghjtr1',
+    'ag2','vhd2','aghjtr2'
 ]
+
 var List = React.createClass({
     createList:function(){
         return arr.map(function(val,index,arr){
@@ -39,36 +40,44 @@ var List = React.createClass({
         )
     }
 })
+
 class About extends Component {
     var _this = this;
+    //初始化属性数据
     getDefaultProps(){
         return {
-            data:['默认标题']
+            data:[],
+            text:'agaggg'
         }
     }
+    //初始化状态数据
     getInitialstate(){
         return {
-            num:0
+            num:0,
+            //用属性数据更新状态数据
+            text:this.porps.text
         }
     }
-    createItem(arr){
-        return arr.map(function(val,index,arr){
-            return (<a href="" key={index}>{val}</a>)
-        })
+    componentWillMount(){
+        
     }
-    constructor() {
-        super();
-        this.state = {}
+    getDataId(e){
+        //触发事件的属性 target
+        //绑定事件的属性 currentTarget
+        //console.log(e.currentTarget);
+        //var id = e.currentTarget.getAttribute('data-id')
+        console.log(e)
+        console.log(arguments)
+        document.body.style.background = 'url(img/bg_'+e+'.jpg)';
     }
     createList(){
-        return _this.props.data.map(function(val,index,arr){
-            return (<p key="index" style={{
-                display:_this.state.num % _this.props.data.length === index ? 'block':'none'
-            }}>{_this.createItem(val)}</p>)
+        var _this = this;
+        return this.props.data.map(function(val,index,arr){
+            return (<p key="index" data-id={val} onClick={_this.getDataId.bind(_this,val)}>{val}</p>)
         })
     }
 {/*
-  *  ReactDom.render(<Nav data={arr}></Nav>,document)
+  *  ReactDom.render(<Nav></Nav>,document)
 */}
     changeState(){
         this.setState({
@@ -78,8 +87,8 @@ class About extends Component {
     render() {
         return (
             {/*
-            <span onClick={this.changeState}>换一换</span>
             { this.createList()}
+            <List parentText={this.state.text}/>
             */}
             <div id='about'>
                 About<br/>
@@ -89,8 +98,22 @@ class About extends Component {
             </div>
         )
     }
+    //组件构建完成
     componentDidMount(){
         //组件创建之后
+        this.setState({
+            data:arr
+        })
+        //访问虚拟DOM
+        console.log(ReactDOM.getDOMNode(this))
+        console.log(ReactDOM.findDOMNode(this))
+        window.onscrll = function(){
+            if(window.scrrollY >= 200){
+                this.setState(text:'返回顶部')
+            }else{
+                this.setState(text:'网站导航')
+            }
+        }.bind(this)
     }
 }
 

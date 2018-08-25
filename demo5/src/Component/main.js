@@ -12,7 +12,7 @@ class Mains extends Component {
         super();
         this.state = {}
     }
-
+    
     render() {
         return (
             <div id='Main'>

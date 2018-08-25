@@ -10,6 +10,7 @@ class Mains extends Component {
 
     render() {
         return (
+            
             <div id='Mains'>
                 主页
             </div>
