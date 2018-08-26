@@ -41,6 +41,31 @@ var List = React.createClass({
     }
 })
 
+var GoBack = React.createClass({
+    createList(){
+        return arr.map(function(val,index,arr){
+            return (<li key="index">{val}</li>)
+        })
+    }
+    // 定义渲染方法
+    render () {
+        // 输出虚拟dom
+        return (
+            <span onClick={this.goBack}>返回顶部</span>
+            //此时作用域是父组件实例化对象，不能用bind 更改作用域
+            <span onClick={this.porps.parentGoBack}>调用父组件方法</span> 
+            <ul>
+                {this.createList()}
+            </ul>
+        )
+    }
+    //定义回调函数:用的子组件自己的方法
+    goBack(e,id,el){
+        //调用父组件方法
+        this.porps.parentGoBack();
+    }
+})
+
 class About extends Component {
     var _this = this;
     //初始化属性数据
@@ -61,6 +86,7 @@ class About extends Component {
     componentWillMount(){
         
     }
+    //传递给子组件的方法1:定义回调函数(用的子组件自己的方法)
     getDataId(e){
         //触发事件的属性 target
         //绑定事件的属性 currentTarget
@@ -88,7 +114,10 @@ class About extends Component {
         return (
             {/*
             { this.createList()}
-            <List parentText={this.state.text}/>
+
+            //父组件向子组件通信：父组件中为子组件添加属性，绑定数据
+            <GoBack class="red" parentPro={this.props.text} 
+            parentText={this.state.text} parentGoBack={this.parentGoBack}/>
             */}
             <div id='about'>
                 About<br/>
@@ -97,6 +126,9 @@ class About extends Component {
                 <Link to="/main">main</Link>
             </div>
         )
+    }
+    parentGoBack(){
+        console.log(this,arguments)
     }
     //组件构建完成
     componentDidMount(){
